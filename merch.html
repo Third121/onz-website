@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ONZ - Browse our collection of unique pins and stickers from three talented artists">
+  <meta name="keywords" content="ONZ, pins, stickers, art, merchandise, artists, Gollie, Rupine, Assei">
+  <title>ONZ</title>
+
+  <!-- Preconnect links for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <span class="onz-text">ONZ</span>
+      <ul class="nav-links">
+        <li><a href="index.html" >ABOUT</a></li>
+        <li><a href="merch.html" class="active-page">MERCH</a></li>
+        <li><a href="artist.html">ARTISTS</a></li>
+      </ul>    
+      <div class="user-cart">
+        <button class="user-btn" id="signupBtn" aria-label="Sign up">SIGN UP</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page">
+      <section class="page-section">
+        <div class="curved-white-bg"></div>
+        <div class="page-content">
+          <div class="artist-sections-container">
+            <div class="top-artists">
+              <!-- Gollie Section -->
+              <div class="artist-section">
+                <h2>GOLLIE</h2>
+                <div class="buttons">
+                  <a href="pinsgollie.html" class="merch-btn">Pins</a>
+                  <a href="stickersgollie.html" class="merch-btn">Stickers</a>
+                </div>                
+              </div>
+
+              <!-- Rupine Section -->
+              <div class="artist-section">
+                <h2>RUPINE</h2>
+                <div class="buttons">
+                  <a href="pinsrupine.html" class="merch-btn">Pins</a>
+                  <a href="stickersrupine.html" class="merch-btn">Stickers</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assei Section -->
+            <div class="artist-section">
+              <h2>ASSEI</h2>
+              <div class="buttons">
+                <a href="pinsassei.html" class="merch-btn">Pins</a>
+                <a href="stickersassei.html" class="merch-btn">Stickers</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal Structure -->
+  <div id="signupModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" id="closeBtn" aria-label="Close modal">×</button>
+      <div class="modal-logo">
+        <img src="images/socials/logo.png" alt="ONZ Logo" width="100" height="auto">
+      </div>
+      <h2 id="modalTitle">Sign Up</h2>
+      <form id="signupForm" novalidate>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required aria-label="Username">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required aria-label="Email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required aria-label="Password">
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <p class="divider">----- sign in with -----</p>
+      <div class="social-signup">
+        <button class="social-btn" aria-label="Sign up with Facebook">
+          <img src="images/socials/signupfacebook.png" alt="Facebook" width="40" height="40">
+        </button>
+        <button class="social-btn" aria-label="Sign up with Google">
+          <img src="images/socials/signupgoogle.png" alt="Google" width="40" height="40">
+        </button>
+        <button class="social-btn" aria-label="Sign up with Apple">
+          <img src="images/socials/signupapple.png" alt="Apple" width="40" height="40">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-cta">
+        <span class="onz-text">READY TO MEET THE ARTISTS?</span>
+      </div>
+      <div class="social-icons">
+        <a href="#" aria-label="Follow us on Instagram"><img src="images/socials/Instagram.png" alt="Instagram"></a>
+        <a href="#" aria-label="Follow us on Facebook"><img src="images/socials/Facebook.png" alt="Facebook"></a>
+        <a href="#" aria-label="Follow us on Twitter"><img src="images/socials/Twitter.png" alt="Twitter"></a>
+      </div>
+    </div>
+  </footer>
+
+  </style>
+</body>
+</html>
+
+  

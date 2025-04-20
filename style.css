@@ -1,0 +1,912 @@
+/* ===== CSS Variables ===== */
+:root {
+  /* Colors */
+  --primary-color: #222;
+  --secondary-color: rgb(255, 196, 0);   /* Hover Animation Color */
+  --text-color: #000;
+  --gray-color: #aaa;
+  --light-gray: #ccc;
+
+  /* Artist Colors */
+  --artist-gollie: rgb(241, 159, 57);
+  --artist-rupine: rgb(103, 196, 208);
+  --artist-assei: rgb(218, 70, 154);
+
+  /* Typography */
+  --font-family: 'Madimi One', sans-serif;
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-size-xlarge: 40px;
+  --font-size-xxlarge: 56px;
+
+  /* Spacing */
+  --spacing-xs: 10px;
+  --spacing-sm: 15px;
+  --spacing-md: 20px;
+  --spacing-lg: 40px;
+  --spacing-xl: 60px;
+
+  /* Border Radius */
+  --button-radius: 25px;
+  --modal-radius: 15px;
+  --section-radius: 100px;
+
+  /* Transitions */
+  --transition-duration: 0.3s;
+
+  /* Layout */
+  --max-width: 1200px;
+  --modal-width: 350px;
+}
+
+/* ===== Reset & Base Styles ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ===== Typography ===== */
+h2 {
+  font-size: var(--font-size-xxlarge);
+  margin-bottom: var(--spacing-md);
+}
+
+p {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ===== Common Components ===== */
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: white;
+  position: relative;
+  z-index: 100;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: var(--font-size-large);
+  transition: color var(--transition-duration) ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary-color);
+}
+
+.active-page {
+  color: var(--gray-color) !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+.onz-text {
+  font-size: 40px;
+  font-weight: bold;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Buttons */
+.user-btn, .merch-btn, button[type="submit"] {
+  font-family: var(--font-family);
+  font-weight: bold;
+  border-radius: var(--button-radius);
+  cursor: pointer;
+  transition: all var(--transition-duration) ease;
+  border: none;
+}
+
+.user-btn {
+  background: var(--light-gray);
+  color: var(--text-color);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-base);
+}
+
+.user-btn:hover {
+  background: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.open {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: white;
+  padding: var(--spacing-md);
+  width: var(--modal-width);
+  border-radius: var(--modal-radius);
+  text-align: center;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transform: scale(0.8) translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.open .modal-content {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.modal-content h2 {
+  font-size: var(--font-size-xlarge);
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-logo {
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-logo img {
+  width: 100px;
+  height: auto;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--light-gray);
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(0deg);
+}
+
+.close-btn:hover {
+  background: var(--secondary-color);
+  transform: rotate(90deg);
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+  width: 100%;
+}
+
+.form-group {
+  width: 90%;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: var(--font-size-base);
+  color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-base);
+  width: 100%;
+  border-radius: var(--button-radius);
+  border: 1px solid var(--light-gray);
+  transition: border-color var(--transition-duration) ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+input[type="text"]:invalid,
+input[type="email"]:invalid,
+input[type="password"]:invalid {
+  border-color: #ff4444;
+}
+
+input[type="text"]:valid,
+input[type="email"]:valid,
+input[type="password"]:valid {
+  border-color: #00C851;
+}
+
+button[type="submit"] {
+  padding: var(--spacing-xs);
+  background-color: var(--secondary-color);
+  color: white;
+  width: 90%;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.05);
+}
+
+button[type="submit"]:disabled {
+  background-color: var(--light-gray);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.divider {
+  text-align: center;
+  margin: var(--spacing-sm) 0;
+  font-weight: bold;
+  font-size: var(--font-size-base);
+}
+
+/* Social Signup */
+.social-signup {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.social-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform var(--transition-duration) ease;
+}
+
+.social-btn img {
+  width: 40px;
+  height: 40px;
+}
+
+.social-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-xs) 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 2;
+  height: 60px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: center;
+  flex-wrap: wrap;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xs) var(--spacing-md);
+  height: 100%;
+}
+
+.footer-cta {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  transition: transform var(--transition-duration) ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Page Structure ===== */
+main {
+  flex: 1;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.page-section, .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  flex: 1;
+  position: relative;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+}
+
+.curved-white-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  top: 5%;
+  transform: translateY(0);
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--max-width);
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+/* ===== About Page ===== */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--max-width);
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--spacing-lg);
+}
+
+.hero-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  width: 100%;
+  padding: 0 var(--spacing-xl);
+  margin-top: 0;
+}
+
+.hero-logo {
+  width: 400px;
+  height: auto;
+  margin: 0;
+}
+
+.hero-text {
+  max-width: 500px;
+  text-align: left;
+  color: white;
+  margin: 0;
+}
+
+.hero-text h2 {
+  color: black;
+  margin-bottom: var(--spacing-md);
+  text-align: left;
+  font-size: 48px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text h2::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  height: 48px;
+  width: 4px;
+  background-color: var(--secondary-color);
+}
+
+.hero-text p {
+  font-size: 28px;
+  line-height: 1.6;
+  text-align: left;
+  color: black;
+  margin: 0;
+}
+
+/* ===== Merch Page ===== */
+.artist-sections-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 1200px;
+}
+
+.top-artists {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.artist-section {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  text-align: center;
+  color: white;
+  border-radius: var(--section-radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* === Merch Contents Page === */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+
+  /* Add these to position it in the top-right corner */
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  z-index: 10; /* Ensures it's above content */
+}
+
+
+.back-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.back-btn .arrow {
+  font-size: 28px; /* Large arrow */
+  line-height: 1;
+  position: relative;
+  top: -2px; /* Raise the arrow slightly */
+}
+/* Fullscreen overlay for zoom effect */
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Darken background */
+  display: none; /* Hidden by default */
+  justify-content: center; /* Center the image */
+  align-items: center; /* Center the image */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.zoom-overlay img {
+  max-width: 90%; /* Limit the width of the zoomed image */
+  max-height: 90%; /* Limit the height of the zoomed image */
+  border-radius: 10px; /* Optional: Keep the border radius */
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  /* Adjustments for tablets and smaller devices */
+  .artist-content {
+    flex-direction: column; /* Stack artist content vertically */
+    align-items: center; /* Center align */
+    padding: var(--spacing-md); /* Add padding for better spacing */
+  }
+
+  .artist-text-box {
+    width: 90%; /* Make text box full width */
+    padding: var(--spacing-md); /* Add padding */
+    margin-bottom: var(--spacing-lg); /* Ensure spacing below */
+  }
+
+  .artist-image {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .merch-title {
+    font-size: 32px; /* Reduce font size for mobile */
+  }
+
+  .merch-item {
+    width: 100%; /* Make each item full-width on smaller screens */
+    padding: var(--spacing-sm); /* Adjust padding */
+  }
+
+  .merch-item button {
+    padding: 10px; /* Increase button size for easier tapping */
+    font-size: 16px; /* Ensure readability */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Adjustments for mobile devices */
+  .artist-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .artist-section h2 {
+    font-size: 28px; /* Adjust heading size for mobile */
+  }
+
+  .back-btn {
+    font-size: 16px; /* Adjust back button size */
+    padding: 6px 12px; /* Adjust padding */
+  }
+}
+
+/* Artist-specific background colors */
+.artist-sections-container .top-artists .artist-section:nth-child(1) {
+  background-color: var(--artist-gollie);
+}
+
+.artist-sections-container .top-artists .artist-section:nth-child(2) {
+  background-color: var(--artist-rupine);
+}
+
+.artist-sections-container > .artist-section:last-child {
+  background-color: var(--artist-assei);
+}
+
+.artist-section h2 {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-xxlarge);
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.merch-btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none; /* removes underline from <a> */
+  border: none;
+  cursor: pointer;
+
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  background: white;
+  color: var(--primary-color);
+  min-width: 150px;
+}
+
+.merch-btn:hover {
+  transform: scale(1.1);
+  background: var(--secondary-color);
+}
+
+
+/* Page Transitions */
+.page {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  .hero-text-container {
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-lg);
+  }
+  .hero-logo {
+    width: 320px; 
+  }
+  .hero-text p {
+    font-size: 22px;
+}
+
+
+@media (max-width: 768px) {
+  .page-section, .hero {
+    height: calc(100vh - 100px);
+  }
+  .curved-white-bg {
+    top: 8%;
+  }
+  .hero-text-container {
+    margin-top: 15px;
+  }
+  .footer-content {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  .top-artists {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  .artist-section {
+    padding: var(--spacing-lg) var(--spacing-md);
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+  .artist-section:last-child {
+    margin-bottom: var(--spacing-lg);
+  }
+  .buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  .merch-btn {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .page-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-section, .hero {
+    height: calc(100vh - 80px);
+  }
+  .curved-white-bg {
+    top: 10%;
+  }
+  .hero-logo {
+    width: 170px;
+  }
+  .hero-text h2 {
+    font-size: 20px;  
+  }
+  .hero-text p {
+    font-size: 15px;
+    line-height: 1.0;
+  }
+  .navbar {
+    padding: var(--spacing-sm);
+  }
+  .nav-links {
+    gap: var(--spacing-sm);
+  }
+  .nav-links a {
+    font-size: var(--font-size-base);
+  }
+  .onz-text {
+    font-size: var(--font-size-large);
+  }
+  .artist-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+  .artist-section:last-child {
+    margin-bottom: var(--spacing-md);
+  }
+  .artist-section h2 {
+    font-size: var(--font-size-large);
+  }
+  .page-content {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  .merch-title {
+    margin-top: var(--spacing-lg); /* Add margin to lower the title */
+    margin-bottom: var(--spacing-sm); /* Maintain bottom margin */
+  }
+  .back-btn {
+    margin-top: var(--spacing-md); /* Add margin to lower the back button */
+    font-size: 16px; /* Adjust back button size */
+    padding: 6px 12px; /* Adjust padding */
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-text h2 {
+    font-size: 20px; /* Reduce heading size for mobile */
+  }
+
+  .hero-text p {
+    font-size: 14px; /* Adjust paragraph font size */
+    line-height: 1.0; /* Adjust line height for better readability */
+  }
+
+  .hero-logo {
+    width: 200px; /* Adjust logo size for mobile */
+  }
+
+  .navbar {
+    padding: var(--spacing-sm); /* Reduce navbar padding */
+  }
+
+  .nav-links a {
+    font-size: 14px; /* Adjust font size for navigation links */
+  }
+
+  .user-btn {
+    font-size: 14px; /* Adjust font size for the sign-up button */
+    padding: 6px 12px; /* Adjust padding for the button */
+  }
+}
+
+      /* Responsive Design for Merch Page */
+  @media (max-width: 768px) {
+    .artist-sections-container {
+      flex-direction: column; /* Stack artist sections vertically */
+      align-items: center; /* Center align */
+      padding: var(--spacing-md); /* Add padding for better spacing */
+    }
+
+    .top-artists {
+      flex-direction: column; /* Stack top artists vertically */
+      align-items: center; /* Center align */
+      width: 100%; /* Ensure full width */
+    }
+
+    .artist-section {
+      width: 90%; /* Make each artist section full width */
+      margin-bottom: var(--spacing-lg); /* Add spacing between sections */
+      padding: var(--spacing-md); /* Add padding for better spacing */
+      text-align: center; /* Center text */
+    }
+
+    .artist-section h2 {
+      font-size: var(--font-size-large); /* Adjust heading size for mobile */
+      margin-bottom: var(--spacing-sm); /* Add margin below heading */
+    }
+
+    /* Add margin to separate sections */
+    .artist-section:nth-child(1) {
+      margin-bottom: var(--spacing-lg); /* Add margin below Gollie */
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column; /* Stack buttons vertically */
+      gap: var(--spacing-sm); /* Add spacing between buttons */
+      align-items: center; /* Center align buttons */
+    }
+
+    .merch-btn {
+      width: auto; /* Make buttons auto width */
+      padding: var(--spacing-xs); /* Adjust padding for smaller buttons */
+      font-size: var(--font-size-sm); /* Adjust font size for buttons */
+      max-width: 150px; /* Limit max width for buttons */
+    }
+    .back-btn {
+      margin-top: 50px; /* Further lower the back button */
+      font-size: 14px; /* Adjust back button size */
+      padding: 6px 12px; /* Adjust padding */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .artist-section {
+      padding: var(--spacing-sm); /* Reduce padding for smaller screens */
+    }
+
+    .artist-section h2 {
+      font-size: var(--font-size-base); /* Further adjust heading size */
+    }
+
+    .merch-btn {
+      padding: var(--spacing-xs); /* Reduce button padding */
+      font-size: var(--font-size-sm); /* Adjust font size for buttons */
+    }
+
+    .back-btn {
+      margin-top: 100px; /* Further lower the back button */
+      font-size: 14px; /* Adjust back button size */
+      padding: 6px 12px; /* Adjust padding */
+    }
+  } 
+}
+
+@media (max-width: 375px) {
+  .merch-title {
+    margin-top: var(--spacing-lg); /* Further lower the title */
+  }
+
+  .merch-item {
+    width: 100%; /* Make each item full-width on smaller screens */
+    padding: var(--spacing-sm); /* Adjust padding */
+    margin-bottom: var(--spacing-sm); /* Add margin between items */
+  }
+
+  .merch-item img {
+    width: 100%; /* Ensure images fill the container */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .merch-item h3 {
+    font-size: 18px; /* Adjust heading size for mobile */
+  }
+
+  .merch-item p {
+    font-size: 14px; /* Adjust paragraph size for mobile */
+  }
+
+  .merch-item button {
+    padding: var(--spacing-xs); /* Reduce button padding */
+    font-size: 14px; /* Adjust button font size */
+  }
+
+  .back-btn {
+    margin-top: 100px; /* Further lower the back button */
+    font-size: 14px; /* Adjust back button size */
+    padding: 6px 12px; /* Adjust padding */
+  }
+}

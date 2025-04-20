@@ -1,0 +1,105 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONZ - A creative collaboration of three artists producing unique pins and stickers">
+    <meta name="keywords" content="ONZ, pins, stickers, art, merchandise, artists">
+    <title>ONZ</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/socials/logo.png" type="image/png">
+
+    <!-- Preconnect links for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <span class="onz-text">ONZ</span>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active-page" aria-current="page" target="_blank" rel="noopener noreferrer">ABOUT</a></li>
+          <li><a href="merch.html" target="_blank" rel="noopener noreferrer">MERCH</a></li>
+          <li><a href="artist.html" target="_blank" rel="noopener noreferrer">ARTISTS</a></li>
+        </ul>    
+        <div class="user-cart">
+          <button class="user-btn" id="signupBtn" aria-label="Sign up">SIGN UP</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="page">
+        <section class="hero">
+          <div class="curved-white-bg"></div>
+          <div class="hero-content">
+            <div class="hero-text-container">
+              <img src="images/socials/logo.png" alt="ONZ logo" class="hero-logo" width="300" height="auto">
+              <div class="hero-text">
+                <h2>WHAT IS ONZ?</h2>
+                <p>Onz is a collaboration of three creative minds sharing a single brain cell. Together, they design and produce merch like pins and stickers. Fresh out of college, their initial goal is to kickstart a small art booth business while exploring their artistic passions.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="signupModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-content">
+        <button class="close-btn" id="closeBtn" aria-label="Close modal">×</button>
+        <div class="modal-logo">
+          <img src="images/socials/logo.png" alt="ONZ Logo" width="100" height="auto">
+        </div>
+        <h2 id="modalTitle">Sign Up</h2>
+        <form id="signupForm" novalidate>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required aria-label="Username">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required aria-label="Email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required aria-label="Password">
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p class="divider">----- sign in with -----</p>
+        <div class="social-signup">
+          <button class="social-btn" aria-label="Sign up with Facebook">
+            <img src="images/socials/signupfacebook.png" alt="Facebook" width="40" height="40">
+          </button>
+          <button class="social-btn" aria-label="Sign up with Google">
+            <img src="images/socials/signupgoogle.png" alt="Google" width="40" height="40">
+          </button>
+          <button class="social-btn" aria-label="Sign up with Apple">
+            <img src="images/socials/signupapple.png" alt="Apple" width="40" height="40">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-cta">
+          <span class="onz-text">READY TO MEET THE ARTISTS?</span>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Follow us on Instagram"><img src="images/socials/instagram.png" alt="Instagram" width="40" height="40"></a>
+          <a href="https://www.facebook.com/profile.php?id=61569644361514" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
+            <img src="images/socials/facebook.png" alt="Facebook" width="40" height="40">
+          </a>
+          <a href="#" aria-label="Follow us on Twitter"><img src="images/socials/twitter.png" alt="Twitter" width="40" height="40"></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+  </html>
