@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ONZ - Meet our talented artists">
+  <meta name="keywords" content="ONZ, artists, Gollie, Rupine, Assei">
+  <title>ONZ - Artists</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/socials/logo.png" type="image/png">
+
+  <!-- Preconnect links for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  
+  <style>
+    body {
+      background-color: #222;
+      color: white;
+      font-family: 'Madimi One', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      flex: 1;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .page {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .page.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Artist page specific styles */
+    .artist-page {
+      min-height: calc(100vh - 100px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .artist-section {
+      background-color: #e49134;
+      position: relative;
+      z-index: 1;
+      margin-top: 5%;
+      border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .artist-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1600px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 var(--spacing-xl);
+      position: relative;
+      z-index: 2;
+      height: 110%;
+    }
+
+    .star {
+      position: absolute;
+      width: 120px;
+      height: auto;
+    }
+
+    .gollie-star-1 {
+      left: -420px;
+      top: 40%;
+      transform: translateY(-50%);
+      width: 300px;
+      z-index: 1;
+    }
+
+    .gollie-star-2 {
+      top: -60px;
+      right: -60px;
+      width: 150px;
+      z-index: 2;
+    }
+
+    .gollie-star-3 {
+      bottom: -10%;
+      right: -15%;
+      width: 400px;
+      z-index: 0;
+    }
+
+    .rupine-star-1 {
+      left: 1160px;
+      top: 20%;
+      transform: translateY(-50%);
+      width: 340px;
+      z-index: 1;
+    }
+
+    .rupine-star-2 {
+      top: -120px;
+      right: 600px;
+      width: 200px;
+      z-index: 2;
+    }
+
+    .rupine-star-3 {
+      bottom: -10%;
+      right: 65%;
+      width: 400px;
+      z-index: -1;
+    }
+
+    .assei-star-1 {
+      left: -220px;
+      top: 20%;
+      transform: translateY(-50%);
+      width: 400px;
+      z-index: 0;
+    }
+
+    .assei-star-2 {
+      top: -60px;
+      right: 160px;
+      width: 150px;
+      z-index: 2;
+    }
+
+    .assei-star-3 {
+      bottom: -10%;
+      right: -15%;
+      width: 500px;
+      z-index: -1;
+    }
+
+    .artist-text-box {
+      background-color: #222;
+      color: white;
+      padding: var(--spacing-lg);
+      border-radius: 70px;
+      border: 1px solid white;
+      max-width: 1600px;
+      position: relative;
+      right: 160px;
+      margin-top: var(--spacing-xl);
+      bottom: -100px;
+    }
+
+    .artist-text-box h2 {
+      font-size: 48px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .artist-text-box p {
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+
+
+    .artist-image {
+      position: absolute;
+      bottom: -28px;
+      right: 0;
+      left: 750px;
+      width: 750px;
+      height: auto;
+      transform: translateY(10%);
+      z-index: 1;
+    }
+
+    .artist-image img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    @media (max-width: 1600px) {
+      .artist-image {
+        width: 650px;
+        left: 650px;
+        bottom: -24px;
+      }
+      .artist-text-box {
+        max-width: 1200px;
+        right: 140px;
+        bottom: -85px;
+        border-radius: 60px;
+      }
+      .star {
+        width: 100px;
+      }
+      .gollie-star-1 {
+        width: 280px;
+        left: -360px;
+      }
+      .gollie-star-2 {
+        width: 130px;
+      }
+      .gollie-star-3 {
+        width: 350px;
+        bottom: -8%;
+        right: -12%;
+      }
+    }
+
+    @media (max-width: 1400px) {
+      .artist-image {
+        width: 550px;
+        left: 550px;
+        bottom: -20px;
+      }
+      .artist-text-box {
+        max-width: 1000px;
+        right: 120px;
+        bottom: -70px;
+        border-radius: 50px;
+      }
+      .star {
+        width: 90px;
+      }
+      .gollie-star-1 {
+        width: 260px;
+        left: -300px;
+      }
+      .gollie-star-2 {
+        width: 110px;
+      }
+      .gollie-star-3 {
+        width: 300px;
+        bottom: -6%;
+        right: -10%;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .artist-image {
+        width: 450px;
+        left: 450px;
+        bottom: -16px;
+        transform: translateY(5%);
+      }
+      .artist-text-box {
+        max-width: 800px;
+        right: 100px;
+        bottom: -55px;
+        padding: var(--spacing-md);
+        border-radius: 40px;
+      }
+      .star {
+        width: 80px;
+      }
+      .gollie-star-1 {
+        width: 240px;
+        left: -240px;
+      }
+      .gollie-star-2 {
+        width: 90px;
+      }
+      .gollie-star-3 {
+        width: 250px;
+        bottom: -5%;
+        right: -8%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .artist-content {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        padding: 0 var(--spacing-md);
+        height: auto;
+      }
+      .artist-text-box {
+        max-width: 90%;
+        right: 0;
+        bottom: 0;
+        margin: var(--spacing-lg) auto;
+        padding: var(--spacing-md);
+        border-radius: 30px;
+      }
+      .artist-image {
+        position: relative;
+        width: 80%;
+        max-width: 350px;
+        left: auto;
+        right: auto;
+        bottom: 0;
+        margin: 0 auto;
+        transform: none;
+      }
+      .star {
+        width: 60px;
+      }
+      .gollie-star-1, .rupine-star-1, .assei-star-1 {
+        width: 200px;
+        left: -180px;
+      }
+      .gollie-star-2, .rupine-star-2, .assei-star-2 {
+        width: 70px;
+      }
+      .gollie-star-3, .rupine-star-3, .assei-star-3 {
+        width: 200px;
+        bottom: -4%;
+        right: -6%;
+      }
+      .page-section {
+        height: auto;
+        min-height: 100vh;
+        padding: var(--spacing-lg) 0;
+      }
+      .artist-section {
+        margin-top: 0;
+      }
+    }
+
+    /* Add a new breakpoint for very small screens */
+    @media (max-width: 480px) {
+      .artist-text-box {
+        max-width: 95%;
+        padding: var(--spacing-sm);
+        border-radius: 25px;
+      }
+      .artist-image {
+        width: 90%;
+        max-width: 280px;
+      }
+      .gollie-star-1, .rupine-star-1, .assei-star-1 {
+        width: 160px;
+        left: -140px;
+      }
+      .gollie-star-2, .rupine-star-2, .assei-star-2 {
+        width: 50px;
+      }
+      .gollie-star-3, .rupine-star-3, .assei-star-3 {
+        width: 150px;
+        bottom: -3%;
+        right: -4%;
+      }
+      .artist-text-box h2 {
+        font-size: 36px;
+      }
+      .artist-text-box p {
+        font-size: 18px;
+      }
+      .page-section {
+        padding: var(--spacing-md) 0;
+      }
+    }
+
+    .page-section {
+      position: relative;
+      height: calc(100vh - 80px);
+      min-height: calc(100vh - 80px);
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .page-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .curved-white-bg {
+      position: absolute;
+      width: 100%;
+      height: 110%;
+      top: 2%;
+      transform: translateY(0);
+      border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+      box-shadow: 0 -8px 0 #fff;
+      background-color: #e49134;
+    }
+
+    .square-bg {
+      position: absolute;
+      width: 100%;
+      height: 110%;
+      top: 2%;
+      transform: translateY(0);
+    }
+
+    .rupine-bg {
+      background-color: var(--artist-rupine);
+    }
+
+    .assei-bg {
+      background-color: var(--artist-assei);
+    }
+
+    /* Add styles for vertical scrolling */
+    .page {
+      height: auto;
+      overflow-y: auto;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xl);
+      height: 110%;
+    }
+
+    /* Modal Styles */
+    .modal-content h2 {
+      color: black;
+      font-size: var(--font-size-xlarge);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .divider {
+      color: black;
+      margin: var(--spacing-md) 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .page-section {
+        height: calc(100vh - 90px);
+        min-height: calc(100vh - 90px);
+        margin-bottom: 0;
+      }
+      .curved-white-bg,
+      .square-bg {
+        top: 1%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-section {
+        height: calc(100vh - 100px);
+        min-height: calc(100vh - 100px);
+        margin-bottom: 0;
+      }
+      .curved-white-bg,
+      .square-bg {
+        top: 0;
+      }
+    }
+
+    /* Footer Styles */
+    footer {
+      height: 45px;
+      background-color: #222;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      text-align: center;
+      padding: 8px var(--spacing-md);
+      height: 100%;
+    }
+
+    .footer-cta {
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: var(--spacing-xs);
+      align-items: center;
+    }
+
+    @media (max-width: 480px) {
+      .footer-content {
+        flex-direction: row;
+        gap: var(--spacing-xs);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <span class="onz-text">ONZ</span>
+      <ul class="nav-links">
+        <li><a href="index.html">ABOUT</a></li>
+        <li><a href="merch.html">MERCH</a></li>
+        <li><a href="artist.html" class="active-page">ARTISTS</a></li>
+      </ul>    
+      <div class="user-cart">
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page">
+      <!-- Gollie Section -->
+      <section class="page-section">
+        <div class="curved-white-bg"></div>
+        <div class="page-content">
+          <div class="artist-content">
+            <img src="images/artists/stargollie1.png" alt="" class="star gollie-star-1">
+            <div class="artist-text-box">
+              <img src="images/artists/stargollie2.png" alt="" class="star gollie-star-2">
+              <h2>GOLLIE</h2>
+              <p>"Gollie's main objective is to create art while genuinely enjoying the process, finding fulfillment in the act of bringing his ideas to life. However, he is a highly situational artist, meaning his level of creativity and output is deeply influenced by his current state of mind."</p>
+            </div>
+            <img src="images/artists/stargollie3.png" alt="" class="star gollie-star-3">
+            <div class="artist-image">
+              <img src="images/artists/gollie.png" alt="Gollie Artwork">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rupine Section -->
+      <section class="page-section">
+        <div class="square-bg rupine-bg"></div>
+        <div class="page-content">
+          <div class="artist-content">
+            <img src="images/artists/starrupine1.png" alt="" class="star rupine-star-1" style="position: absolute;">
+            <div class="artist-text-box" style="right: -100px;">
+              <img src="images/artists/starrupine2.png" alt="" class="star rupine-star-2">
+              <h2>RUPINE</h2>
+              <p> “A humble business cat who likes money. Rupine finds enjoyment in learning various art techniques in illustration, not only that but also takes interests in other artistic ventures such as Animation, 3D, etc. –. This jack likes learning a lot of trades, if only there was time to learn them all.”</p>
+            </div>
+            <img src="images/artists/starrupine3.png" alt="" class="star rupine-star-3">
+            <div class="artist-image" style="left: -450px;">
+              <img src="images/artists/rupine.png" alt="Rupine Artwork">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Assei Section -->
+      <section class="page-section">
+        <div class="square-bg assei-bg"></div>
+        <div class="page-content">
+          <div class="artist-content">
+            <img src="images/artists/starassei1.png" alt="" class="star assei-star-1">
+            <div class="artist-text-box">
+              <img src="images/artists/starassei2.png" alt="" class="star assei-star-2">
+              <h2>ASSEI</h2>
+            <p>“She enjoys drawing character art and excels in multiple styles, though her focus remains primarily on illustration. She works quickly and often draws inspiration from shows, trending topics, or other materials she comes across.”</p>
+            </div>
+            <img src="images/artists/starassei3.png" alt="" class="star assei-star-3">
+            <div class="artist-image">
+              <img src="images/artists/assei.png" alt="Assei Artwork">
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-cta">
+        <span class="onz-text">READY TO MEET THE ARTISTS?</span>
+      </div>
+      <div class="social-icons">
+        <a href="#" aria-label="Follow us on Instagram"><img src="images/socials/instagram.png" alt="Instagram" width="40" height="40"></a>
+        <a href="https://www.facebook.com/profile.php?id=61569644361514" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
+          <img src="images/socials/facebook.png" alt="Facebook" width="40" height="40">
+        </a>
+        <a href="#" aria-label="Follow us on Twitter"><img src="images/socials/twitter.png" alt="Twitter" width="40" height="40"></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('.page').classList.add('loaded');
+    });
+  </script>
+</body>
+</html>

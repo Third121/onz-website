@@ -1,0 +1,307 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONZ - Gollie's Merchandise">
+    <meta name="keywords" content="ONZ, Gollie, Merchandise, Art">
+    <title>ONZ - Gollie's Merch</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/socials/logo.png" type="image/png">
+
+    <!-- Preconnect links for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+    <style>
+      body {
+        background-color: #222;
+        color: white;
+        font-family: 'Madimi One', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        flex: 1;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      .page {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .page.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+
+      .page-section {
+        position: relative;
+        height: auto;
+        min-height: calc(100vh - 100px);
+        margin-bottom: 0;
+      }
+
+      .curved-white-bg {
+        position: absolute;
+        width: 100%;
+        height: 110%;
+        top: 2%;
+        transform: translateY(0);
+        border-radius: 110% 110% 0 0 / 8% 8% 0 0;
+        box-shadow: 0 -8px 0 #fff;
+        background-color: var(--artist-gollie);
+      }
+
+      .page-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: var(--spacing-xl);
+        height: auto;
+      }
+
+      .star {
+        position: absolute;
+        background-image: url('images/merch/bgstar.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+
+      .star-1 {
+        top: 10%;
+        left: -30%;
+        width: 700px;
+        height: 700px;
+        transform: rotate(-4deg);
+      }
+
+      .star-2 {
+        top: 10%;
+        right: -30%;
+        width: 500px;
+        height: 500px;
+        transform: rotate(-45deg);
+      }
+
+      .star-3 {
+        bottom: 5%;
+        left: -20%;
+        width: 500px;
+        height: 500px;
+        transform: rotate(75deg);
+      }
+
+      .star-4 {
+        bottom: 0%;
+        right: -20%;
+        width: 500px;
+        height: 500px;
+        transform: rotate(-60deg);
+      }
+
+      .merch-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--spacing-lg);
+      }
+
+      .merch-title {
+        font-size: 48px;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .merch-description {
+        font-size: 24px;
+        line-height: 1.5;
+        max-width: 800px;
+      }
+
+      .merch-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-lg);
+      }
+
+      .merch-item {
+        background-color: #333;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: var(--spacing-md);
+        text-align: center;
+        width: 250px;
+      }
+
+      .merch-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .merch-item img.zoomed {
+        transform: scale(1.5);
+        z-index: 10;
+      }
+
+      .merch-item h3 {
+        font-size: 20px;
+        margin: var(--spacing-sm) 0;
+      }
+
+      .merch-item p {
+        font-size: 16px;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .merch-item button {
+        background-color: #e49134;
+        color: white;
+        border: none;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: 'Madimi One', sans-serif;
+      }
+
+      .merch-item button:hover {
+        background-color: #d17f2c;
+      }
+
+      .modal-content {
+        background-color: white;
+        color: black;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <span class="onz-text">ONZ</span>
+        <ul class="nav-links">
+          <li><a href="index.html">ABOUT</a></li>
+          <li><a href="merch.html" class="active-page">MERCH</a></li>
+          <li><a href="artist.html">ARTISTS</a></li>
+        </ul>
+        <div class="user-cart">
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="page">
+        <!-- Gollie's Merchandise Section -->
+        <section class="page-section">
+          <div class="curved-white-bg"></div>
+          <div class="page-content">
+            <div class="merch-content">
+              <a href="merch.html" class="back-btn"><span class="arrow">←</span> Back</a>
+              <h1 class="merch-title">Pins</h1>
+              <div class="merch-items">
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 1">
+                  <h3>Merch Item 1</h3>
+                  <p>$10.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 2">
+                  <h3>Merch Item 2</h3>
+                  <p>$15.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 3">
+                  <h3>Merch Item 3</h3>
+                  <p>$20.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 4">
+                  <h3>Merch Item 4</h3>
+                  <p>$12.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 5">
+                  <h3>Merch Item 5</h3>
+                  <p>$18.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 6">
+                  <h3>Merch Item 6</h3>
+                  <p>$22.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 7">
+                  <h3>Merch Item 7</h3>
+                  <p>$14.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 8">
+                  <h3>Merch Item 8</h3>
+                  <p>$16.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="merch-item">
+                  <img src="images/merch/slot.png" alt="Merch Item 9">
+                  <h3>Merch Item 9</h3>
+                  <p>$25.00</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- New Stars at each corner -->
+            <div class="star star-1"></div> <!-- Top-left corner -->
+            <div class="star star-2"></div> <!-- Top-right corner -->
+            <div class="star star-3"></div> <!-- Bottom-left corner -->
+            <div class="star star-4"></div> <!-- Bottom-right corner -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-cta">
+          <span class="onz-text">READY TO MEET THE ARTISTS?</span>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Follow us on Instagram"><img src="images/socials/instagram.png" alt="Instagram" width="40" height="40"></a>
+          <a href="#" aria-label="Follow us on Facebook"><img src="images/socials/facebook.png" alt="Facebook" width="40" height="40"></a>
+          <a href="#" aria-label="Follow us on Twitter"><img src="images/socials/twitter.png" alt="Twitter" width="40" height="40"></a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="zoom-overlay" id="zoomOverlay">
+      <img id="zoomedImage" src="" alt="Zoomed Sticker" />
+    </div>
+
+  </body>
+  </html>
